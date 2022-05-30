@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaf39ce171f3ca43af68c12980e84c6, type: 3}
+  m_Name: file1
+  m_EditorClassIdentifier: 
+  NodeLinks:
+  - BaseNodeGuid: 21955554-612a-4e0b-84a8-0bbb6568fd5d
+    PortName: Next
+    TargetNodeGuid: 5c9fc0fc-bd35-43bb-a432-af4310ce660e
+  - BaseNodeGuid: 5c9fc0fc-bd35-43bb-a432-af4310ce660e
+    PortName: Goodbye
+    TargetNodeGuid: 85b54b10-65ae-4722-b53e-c4dc7acf712d
+  - BaseNodeGuid: 5c9fc0fc-bd35-43bb-a432-af4310ce660e
+    PortName: Cheese
+    TargetNodeGuid: 8cc74327-afcb-49ca-997c-ea876102b747
+  - BaseNodeGuid: 5c9fc0fc-bd35-43bb-a432-af4310ce660e
+    PortName: Hello
+    TargetNodeGuid: d90c7653-06f7-474f-9422-f7829163fad4
+  - BaseNodeGuid: 8cc74327-afcb-49ca-997c-ea876102b747
+    PortName: Choice 2
+    TargetNodeGuid: e06b2161-2795-4741-813d-19ce8926d2a2
+  - BaseNodeGuid: d90c7653-06f7-474f-9422-f7829163fad4
+    PortName: Choice 2
+    TargetNodeGuid: e06b2161-2795-4741-813d-19ce8926d2a2
+  - BaseNodeGuid: 85b54b10-65ae-4722-b53e-c4dc7acf712d
+    PortName: Choice 2
+    TargetNodeGuid: e06b2161-2795-4741-813d-19ce8926d2a2
+  DialogueNodeData:
+  - NodeGUID: 85b54b10-65ae-4722-b53e-c4dc7acf712d
+    DialogueText: Dialogue Node
+    Position: {x: 748, y: 410.40002}
+  - NodeGUID: 5c9fc0fc-bd35-43bb-a432-af4310ce660e
+    DialogueText: Dialogue Node
+    Position: {x: 392.8, y: 260.80002}
+  - NodeGUID: d90c7653-06f7-474f-9422-f7829163fad4
+    DialogueText: Dialogue Node
+    Position: {x: 748, y: 173.59999}
+  - NodeGUID: e06b2161-2795-4741-813d-19ce8926d2a2
+    DialogueText: Dialogue Node
+    Position: {x: 1060.8, y: 285.6}
+  - NodeGUID: 8cc74327-afcb-49ca-997c-ea876102b747
+    DialogueText: Dialogue Node
+    Position: {x: 748, y: 285.6}
