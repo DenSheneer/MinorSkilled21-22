@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DialogueGraphView : GraphView
 {
-    private readonly Vector2 defaultNodeSize = new Vector2(x: 150, y: 200);
+    public readonly Vector2 DefaultNodeSize = new Vector2(x: 150, y: 200);
 
     public DialogueGraphView()
     {
@@ -60,6 +61,9 @@ public class DialogueGraphView : GraphView
         node.RefreshExpandedState();
         node.RefreshPorts();
 
+        node.capabilities &= ~Capabilities.Movable;
+        node.capabilities &= ~Capabilities.Deletable;
+
         node.SetPosition(new Rect(x: 100, y: 200, width: 100, height: 150));
         return node;
     }
@@ -85,9 +89,18 @@ public class DialogueGraphView : GraphView
         button.text = "New Choice";
         dialogueNode.titleContainer.Add(button);
 
+        var textField = new TextField(string.Empty);
+        textField.RegisterValueChangedCallback(evt => 
+        {
+            dialogueNode.DialogueText = evt.newValue;
+            dialogueNode.title = evt.newValue;
+        });
+        textField.SetValueWithoutNotify(dialogueNode.title);
+        dialogueNode.mainContainer.Add(textField);
+
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
-        dialogueNode.SetPosition(new Rect(Vector3.zero, defaultNodeSize));
+        dialogueNode.SetPosition(new Rect(Vector3.zero, DefaultNodeSize));
 
         return dialogueNode;
     }
@@ -100,7 +113,10 @@ public class DialogueGraphView : GraphView
         generatedPort.contentContainer.Remove(oldLabel);
 
         var outputPortCount = dialogueNode.Query("connector").ToList().Count;
-        var choicePortName = string.IsNullOrEmpty(overriddenPortName) ? $"Choice {outputPortCount + 1}" : overriddenPortName;
+
+        var choicePortName = string.IsNullOrEmpty(overriddenPortName)
+            ? $"Choice {outputPortCount + 1}"
+            : overriddenPortName;
 
         var textField = new TextField
         {
@@ -124,6 +140,19 @@ public class DialogueGraphView : GraphView
 
     private void RemovePort(DialogueNode dialogueNode, Port generatedPort)
     {
-        
+        var targetEdge = edges.ToList().Where(x =>
+            x.output.portName == generatedPort.portName &&
+            x.output.node == generatedPort.node);
+
+        if (targetEdge.Any())
+        {
+            var edge = targetEdge.First();
+            edge.input.Disconnect(edge);
+            RemoveElement(targetEdge.First());
+        }
+
+            dialogueNode.outputContainer.Remove(generatedPort);
+            dialogueNode.RefreshPorts();
+            dialogueNode.RefreshExpandedState();
     }
 }
