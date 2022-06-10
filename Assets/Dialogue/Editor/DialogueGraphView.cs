@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -72,7 +72,7 @@ public class DialogueGraphView : GraphView
     {
         AddElement(CreateDialogueNode(nodeName));
     }
-
+    // Do to: take into account that the actor might already be when loading the data.
     public DialogueNode CreateDialogueNode(string nodeName)
     {
         var dialogueNode = new DialogueNode
@@ -90,13 +90,35 @@ public class DialogueGraphView : GraphView
         dialogueNode.titleContainer.Add(button);
 
         var textField = new TextField(string.Empty);
-        textField.RegisterValueChangedCallback(evt => 
+        textField.RegisterValueChangedCallback(evt =>
         {
             dialogueNode.DialogueText = evt.newValue;
             dialogueNode.title = evt.newValue;
         });
         textField.SetValueWithoutNotify(dialogueNode.title);
         dialogueNode.mainContainer.Add(textField);
+
+        var actors = Resources.LoadAll("Actors/", typeof(DialogueActor));
+
+        var actorListView = new ListView();
+        dialogueNode.inputContainer.Add(actorListView);
+
+        var listElements = new Dictionary<string, VisualElement>();
+
+        actorListView.makeItem = () => new Label();
+        actorListView.bindItem = (item, index) =>
+        {
+            (item as Label).text = actors[index].name;
+            listElements.Add(actors[index].name, item);
+        };
+        actorListView.itemsSource = actors;
+
+        actorListView.onSelectionChange += (x) =>
+        {
+            dialogueNode.Actor = x.First() as DialogueActor;
+            clearListSelect(listElements.Values.ToList());
+            listElements[dialogueNode.Actor.ActorName].style.backgroundColor = Color.red;
+        };
 
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
@@ -117,6 +139,7 @@ public class DialogueGraphView : GraphView
         var choicePortName = string.IsNullOrEmpty(overriddenPortName)
             ? $"Choice {outputPortCount + 1}"
             : overriddenPortName;
+
 
         var textField = new TextField
         {
@@ -151,8 +174,16 @@ public class DialogueGraphView : GraphView
             RemoveElement(targetEdge.First());
         }
 
-            dialogueNode.outputContainer.Remove(generatedPort);
-            dialogueNode.RefreshPorts();
-            dialogueNode.RefreshExpandedState();
+        dialogueNode.outputContainer.Remove(generatedPort);
+        dialogueNode.RefreshPorts();
+        dialogueNode.RefreshExpandedState();
+    }
+
+    void clearListSelect(List<VisualElement> visualElements)
+    {
+        foreach(var element in visualElements)
+        {
+            element.style.backgroundColor = Color.clear;
+        }
     }
 }

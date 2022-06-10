@@ -48,6 +48,7 @@ public class GraphSaveUtility
             {
                 Guid = dialogueNode.GUID,
                 DialogueText = dialogueNode.DialogueText,
+                Actor = dialogueNode.Actor,
                 Position = dialogueNode.GetPosition().position
             });
         }

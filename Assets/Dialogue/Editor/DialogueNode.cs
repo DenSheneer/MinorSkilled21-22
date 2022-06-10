@@ -6,7 +6,7 @@ using UnityEngine;
 public class DialogueNode : Node
 {
     public string GUID;
-
     public string DialogueText;
+    public DialogueActor Actor;
     public bool EntryPoint = false;
 }
