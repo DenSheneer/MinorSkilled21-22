@@ -33,17 +33,22 @@ MonoBehaviour:
     TargetNodeGuid: 09865475-5262-402d-9b99-e145b5ab5097
   DialogueNodeData:
   - Guid: 398f0674-d67d-4f8c-b051-998c90aa96d4
-    DialogueText: hellow world
+    DialogueText: Hey how are you?
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
     Position: {x: 304, y: 200}
-  - Guid: bc7ca380-1b81-4e65-9b02-27a8aacffffd
-    DialogueText: Dialogue Node
-    Position: {x: 588.6667, y: 314}
-  - Guid: 89fa2d84-50ca-45df-a4b1-66ef94912df1
-    DialogueText: Dialogue Node
-    Position: {x: 928, y: 314}
-  - Guid: 09865475-5262-402d-9b99-e145b5ab5097
-    DialogueText: Dialogue Node
-    Position: {x: 1174.6666, y: 122.666664}
   - Guid: d7e1c9d1-6d69-4308-8951-9c58a267b8b7
-    DialogueText: Dialogue Node
-    Position: {x: 588.6667, y: 122.666664}
+    DialogueText: Good!
+    Actor: {fileID: 11400000, guid: 88b7127284ef81547963bc4fb45e3673, type: 2}
+    Position: {x: 588.8, y: 122.40001}
+  - Guid: bc7ca380-1b81-4e65-9b02-27a8aacffffd
+    DialogueText: Eh, I've been better
+    Actor: {fileID: 11400000, guid: 88b7127284ef81547963bc4fb45e3673, type: 2}
+    Position: {x: 588.8, y: 313.59998}
+  - Guid: 09865475-5262-402d-9b99-e145b5ab5097
+    DialogueText: So, what have you been up to?
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
+    Position: {x: 1207.2, y: 121.600006}
+  - Guid: 89fa2d84-50ca-45df-a4b1-66ef94912df1
+    DialogueText: Ow sorry to hear that.
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
+    Position: {x: 928, y: 313.59998}

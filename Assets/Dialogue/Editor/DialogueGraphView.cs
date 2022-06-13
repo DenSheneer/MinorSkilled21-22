@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class DialogueGraphView : GraphView
 {
     public readonly Vector2 DefaultNodeSize = new Vector2(x: 150, y: 200);
+    public readonly Color highLightColor = Color.grey;
 
     public DialogueGraphView()
     {
@@ -73,7 +74,7 @@ public class DialogueGraphView : GraphView
         AddElement(CreateDialogueNode(nodeName));
     }
     // Do to: take into account that the actor might already be when loading the data.
-    public DialogueNode CreateDialogueNode(string nodeName)
+    public DialogueNode CreateDialogueNode(string nodeName, DialogueActor actor = null)
     {
         var dialogueNode = new DialogueNode
         {
@@ -81,6 +82,8 @@ public class DialogueGraphView : GraphView
             DialogueText = nodeName,
             GUID = Guid.NewGuid().ToString()
         };
+        if (actor != null) { dialogueNode.Actor = actor; }
+
         var inputPort = GeneratePort(dialogueNode, Direction.Input, Port.Capacity.Multi);
         inputPort.portName = "Input";
         dialogueNode.inputContainer.Add(inputPort);
@@ -98,26 +101,31 @@ public class DialogueGraphView : GraphView
         textField.SetValueWithoutNotify(dialogueNode.title);
         dialogueNode.mainContainer.Add(textField);
 
-        var actors = Resources.LoadAll("Actors/", typeof(DialogueActor));
+
+        var actorObjects = Resources.LoadAll("Actors/", typeof(DialogueActor)).Cast<DialogueActor>().ToList();
+        var listElements = new Dictionary<string, VisualElement>();
 
         var actorListView = new ListView();
         dialogueNode.inputContainer.Add(actorListView);
-
-        var listElements = new Dictionary<string, VisualElement>();
-
         actorListView.makeItem = () => new Label();
         actorListView.bindItem = (item, index) =>
         {
-            (item as Label).text = actors[index].name;
-            listElements.Add(actors[index].name, item);
-        };
-        actorListView.itemsSource = actors;
+            string actorName = actorObjects[index].ActorName;
+            (item as Label).text = actorName;
+            listElements.Add(actorObjects[index].ActorName, item);
 
-        actorListView.onSelectionChange += (x) =>
+            if (dialogueNode.Actor != null && dialogueNode.Actor.ActorName == actorName)
+            {
+                highlightListElement(item);
+            }
+        };
+        actorListView.itemsSource = actorObjects;
+
+        actorListView.onSelectionChange += (selectedObjects) =>
         {
-            dialogueNode.Actor = x.First() as DialogueActor;
-            clearListSelect(listElements.Values.ToList());
-            listElements[dialogueNode.Actor.ActorName].style.backgroundColor = Color.red;
+            dialogueNode.Actor = selectedObjects.First() as DialogueActor;
+            clearListHighlights(listElements.Values.ToList());
+            highlightListElement(listElements[dialogueNode.Actor.ActorName]);
         };
 
         dialogueNode.RefreshExpandedState();
@@ -179,11 +187,15 @@ public class DialogueGraphView : GraphView
         dialogueNode.RefreshExpandedState();
     }
 
-    void clearListSelect(List<VisualElement> visualElements)
+    void clearListHighlights(List<VisualElement> visualElements)
     {
-        foreach(var element in visualElements)
+        foreach (var element in visualElements)
         {
             element.style.backgroundColor = Color.clear;
         }
+    }
+    void highlightListElement(VisualElement visualElement)
+    {
+        visualElement.style.backgroundColor = highLightColor;
     }
 }
