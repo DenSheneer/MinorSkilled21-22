@@ -38,11 +38,11 @@ MonoBehaviour:
     Position: {x: 304, y: 200}
   - Guid: d7e1c9d1-6d69-4308-8951-9c58a267b8b7
     DialogueText: Good!
-    Actor: {fileID: 11400000, guid: 88b7127284ef81547963bc4fb45e3673, type: 2}
+    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
     Position: {x: 588.8, y: 122.40001}
   - Guid: bc7ca380-1b81-4e65-9b02-27a8aacffffd
     DialogueText: Eh, I've been better
-    Actor: {fileID: 11400000, guid: 88b7127284ef81547963bc4fb45e3673, type: 2}
+    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
     Position: {x: 588.8, y: 313.59998}
   - Guid: 09865475-5262-402d-9b99-e145b5ab5097
     DialogueText: So, what have you been up to?

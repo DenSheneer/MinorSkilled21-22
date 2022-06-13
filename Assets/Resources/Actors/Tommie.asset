@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7464a95b2c84ae428bef5cca8d5ce7e, type: 3}
-  m_Name: Kira
+  m_Name: Tommie
   m_EditorClassIdentifier: 
-  ActorName: Kira
+  HighlightColor: {r: 1, g: 0, b: 0.7981615, a: 0}

@@ -9,8 +9,6 @@ using UnityEngine.UIElements;
 public class DialogueGraphView : GraphView
 {
     public readonly Vector2 DefaultNodeSize = new Vector2(x: 150, y: 200);
-    public readonly Color highLightColor = Color.grey;
-
     public DialogueGraphView()
     {
         styleSheets.Add(Resources.Load<StyleSheet>("DialogueGraph"));
@@ -93,6 +91,8 @@ public class DialogueGraphView : GraphView
         dialogueNode.titleContainer.Add(button);
 
         var textField = new TextField(string.Empty);
+        textField.style.height = 60.0f;
+        textField.style.flexWrap = Wrap.WrapReverse;
         textField.RegisterValueChangedCallback(evt =>
         {
             dialogueNode.DialogueText = evt.newValue;
@@ -103,29 +103,32 @@ public class DialogueGraphView : GraphView
 
 
         var actorObjects = Resources.LoadAll("Actors/", typeof(DialogueActor)).Cast<DialogueActor>().ToList();
-        var listElements = new Dictionary<string, VisualElement>();
+        var listElements = new Dictionary<int, VisualElement>();
 
         var actorListView = new ListView();
         dialogueNode.inputContainer.Add(actorListView);
         actorListView.makeItem = () => new Label();
         actorListView.bindItem = (item, index) =>
         {
-            string actorName = actorObjects[index].ActorName;
-            (item as Label).text = actorName;
-            listElements.Add(actorObjects[index].ActorName, item);
+            DialogueActor thisActor = actorObjects[index];
 
-            if (dialogueNode.Actor != null && dialogueNode.Actor.ActorName == actorName)
+            (item as Label).text = thisActor.name;
+            listElements.Add(thisActor.GetHashCode(), item);
+
+            if (dialogueNode.Actor != null && dialogueNode.Actor.GetHashCode() == thisActor.GetHashCode())
             {
-                highlightListElement(item);
+                highlightListElement(item, thisActor.HighlightColor);
             }
         };
         actorListView.itemsSource = actorObjects;
 
         actorListView.onSelectionChange += (selectedObjects) =>
         {
-            dialogueNode.Actor = selectedObjects.First() as DialogueActor;
+            DialogueActor thisActor = selectedObjects.First() as DialogueActor;
+            dialogueNode.Actor = thisActor;
             clearListHighlights(listElements.Values.ToList());
-            highlightListElement(listElements[dialogueNode.Actor.ActorName]);
+            Debug.Log(thisActor.name + thisActor.HighlightColor);
+            highlightListElement(listElements[thisActor.GetHashCode()], thisActor.HighlightColor);
         };
 
         dialogueNode.RefreshExpandedState();
@@ -194,8 +197,9 @@ public class DialogueGraphView : GraphView
             element.style.backgroundColor = Color.clear;
         }
     }
-    void highlightListElement(VisualElement visualElement)
+    void highlightListElement(VisualElement visualElement, Color highLightColor)
     {
+        highLightColor.a = 0.75f;
         visualElement.style.backgroundColor = highLightColor;
     }
 }
