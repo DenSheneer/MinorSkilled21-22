@@ -71,7 +71,7 @@ public class DialogueGraphView : GraphView
     {
         AddElement(CreateDialogueNode(nodeName));
     }
-    // Do to: take into account that the actor might already be when loading the data.
+
     public DialogueNode CreateDialogueNode(string nodeName, DialogueActor actor = null)
     {
         var dialogueNode = new DialogueNode
@@ -91,8 +91,6 @@ public class DialogueGraphView : GraphView
         dialogueNode.titleContainer.Add(button);
 
         var textField = new TextField(string.Empty);
-        textField.style.height = 60.0f;
-        textField.style.flexWrap = Wrap.WrapReverse;
         textField.RegisterValueChangedCallback(evt =>
         {
             dialogueNode.DialogueText = evt.newValue;
@@ -100,7 +98,6 @@ public class DialogueGraphView : GraphView
         });
         textField.SetValueWithoutNotify(dialogueNode.title);
         dialogueNode.mainContainer.Add(textField);
-
 
         var actorObjects = Resources.LoadAll("Actors/", typeof(DialogueActor)).Cast<DialogueActor>().ToList();
         var listElements = new Dictionary<int, VisualElement>();
@@ -148,7 +145,7 @@ public class DialogueGraphView : GraphView
         var outputPortCount = dialogueNode.Query("connector").ToList().Count;
 
         var choicePortName = string.IsNullOrEmpty(overriddenPortName)
-            ? $"Choice {outputPortCount + 1}"
+            ? $"Choice {outputPortCount}"
             : overriddenPortName;
 
 
@@ -199,7 +196,7 @@ public class DialogueGraphView : GraphView
     }
     void highlightListElement(VisualElement visualElement, Color highLightColor)
     {
-        highLightColor.a = 0.75f;
+        highLightColor.a = 0.25f;
         visualElement.style.backgroundColor = highLightColor;
     }
 }
