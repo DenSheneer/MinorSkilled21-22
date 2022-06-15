@@ -1022,7 +1022,7 @@ MonoBehaviour:
   button_b: {fileID: 1225890646}
   actorNameObject: {fileID: 2132193979}
   dialogueTextObject: {fileID: 1828421060}
-  dialogueObject: {fileID: 11400000, guid: c2630142be8628f4ebfaf4e8b8d9b569, type: 2}
+  dialogueObject: {fileID: 11400000, guid: 7a596cb1c497b0149a24babc0794029f, type: 2}
 --- !u!4 &1535699503
 Transform:
   m_ObjectHideFlags: 0

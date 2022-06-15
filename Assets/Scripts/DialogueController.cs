@@ -36,7 +36,7 @@ public class DialogueController : MonoBehaviour
             if (dialogueObject.DialogueNodeData.Count > 0)
             {
                 generateCache();
-                loadDialogue(dialogueObject.DialogueNodeData[0]);
+                loadDialogue(findStartNode());
             }
         }
         else
@@ -151,12 +151,36 @@ public class DialogueController : MonoBehaviour
             if (actorNameObject != null)
             {
                 if (node.Actor != null)
-                    actorNameObject.text = node.Actor.name;
-                else
-                    actorNameObject.text = string.Empty;
+                    if (node.Actor == null || node.Actor.name == "_None")
+                        actorNameObject.text = string.Empty;
+                    else
+                        actorNameObject.text = node.Actor.name;
             }
             if (dialogueTextObject != null)
                 dialogueTextObject.text = node.DialogueText;
         }
+    }
+    private DialogueNodeData findStartNode()
+    {
+        int nrOfHits = 0;
+        DialogueNodeData startNode = null;
+        foreach (var node in dialogueObject.DialogueNodeData)
+        {
+            if (node.FirstNode)
+            {
+                startNode = node;
+                nrOfHits++;
+            }
+        }
+        if (nrOfHits == 0)
+        {
+            Debug.Log("No start node found!");
+        }
+        if (nrOfHits > 1)
+        {
+            Debug.Log("Multiple start nodes found! Program might not behave as intended");
+        }
+
+        return startNode;
     }
 }

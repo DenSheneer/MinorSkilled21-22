@@ -118,8 +118,10 @@ public class DialogueGraphView : GraphView
             }
             if (thisActor.name == "_None")
             {
+                (item as Label).text = "None";
                 if (actor == null)
                 {
+                    dialogueNode.Actor = thisActor;
                     highlightListElement(item, thisActor.HighlightColor);
                 }
             }
