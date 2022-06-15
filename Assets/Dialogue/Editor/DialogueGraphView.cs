@@ -116,6 +116,13 @@ public class DialogueGraphView : GraphView
             {
                 highlightListElement(item, thisActor.HighlightColor);
             }
+            if (thisActor.name == "_None")
+            {
+                if (actor == null)
+                {
+                    highlightListElement(item, thisActor.HighlightColor);
+                }
+            }
         };
         actorListView.itemsSource = actorObjects;
 
@@ -124,7 +131,6 @@ public class DialogueGraphView : GraphView
             DialogueActor thisActor = selectedObjects.First() as DialogueActor;
             dialogueNode.Actor = thisActor;
             clearListHighlights(listElements.Values.ToList());
-            Debug.Log(thisActor.name + thisActor.HighlightColor);
             highlightListElement(listElements[thisActor.GetHashCode()], thisActor.HighlightColor);
         };
 

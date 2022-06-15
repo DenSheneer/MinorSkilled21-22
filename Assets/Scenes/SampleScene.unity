@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 1494364021}
   - component: {fileID: 1494364020}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: b_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1020,9 +1020,9 @@ MonoBehaviour:
   text_b: {fileID: 1494364020}
   button_a: {fileID: 1931001179}
   button_b: {fileID: 1225890646}
-  actorName: {fileID: 2132193979}
-  dialogueText: {fileID: 1828421060}
-  dialogueObject: {fileID: 11400000, guid: 7a596cb1c497b0149a24babc0794029f, type: 2}
+  actorNameObject: {fileID: 2132193979}
+  dialogueTextObject: {fileID: 1828421060}
+  dialogueObject: {fileID: 11400000, guid: c2630142be8628f4ebfaf4e8b8d9b569, type: 2}
 --- !u!4 &1535699503
 Transform:
   m_ObjectHideFlags: 0
@@ -1050,7 +1050,7 @@ GameObject:
   - component: {fileID: 1828421061}
   - component: {fileID: 1828421060}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DialogueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1223,7 +1223,7 @@ GameObject:
   - component: {fileID: 1921308692}
   - component: {fileID: 1921308691}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: a_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1737,7 +1737,7 @@ GameObject:
   - component: {fileID: 2132193978}
   - component: {fileID: 2132193979}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ActorName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
