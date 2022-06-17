@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c9dc5940b84724984e03ec6f86ddb9, type: 3}
+  m_Name: Slideshow1
+  m_EditorClassIdentifier: 
+  ImageSet:
+  - {fileID: 2800000, guid: 9c0d6a39027b1614e955c3ba69a51552, type: 3}
+  - {fileID: 2800000, guid: 02726d2f15c623543b3717a2ac6b8d1b, type: 3}
+  - {fileID: 2800000, guid: 8c664af65243a01458e214206fb3ba60, type: 3}
+  - {fileID: 2800000, guid: 25abc05bf94256d49b902be0afae15dc, type: 3}

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene2.unity
     guid: 7e6bb707b6fe6674ba3f1e2495cd5dba
+  - enabled: 1
+    path: Assets/Scenes/Scene3_Slideshow.unity
+    guid: 1b36703a11a79a540bd4856e38e13a39
   m_configObjects: {}
