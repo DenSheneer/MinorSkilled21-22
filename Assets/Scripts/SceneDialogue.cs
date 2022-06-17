@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine.UI;
 using System;
 
-public class DialogueController : MonoBehaviour
+public class SceneDialogue : SceneEvent
 {
     [SerializeField]
     GameObject multipleChoicePanel;
@@ -53,15 +53,18 @@ public class DialogueController : MonoBehaviour
             nodeCache.Add(node.Guid, node);
         }
     }
-
-    public void Update()
+    public override void Progress()
     {
-        if (!waitingForInput)
+        if (waitingForInput)
+            return;
+
+        if (nextNode != null)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                loadDialogue(nextNode);
-            }
+            loadDialogue(nextNode);
+        }
+        else
+        {
+            onEnd?.Invoke();
         }
     }
 
