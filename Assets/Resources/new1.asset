@@ -22,19 +22,62 @@ MonoBehaviour:
   - BaseNodeGuid: d6d3fdfc-9020-4492-bfc3-cb99cea556fc
     PortName: Choice 2
     TargetNodeGuid: 2e99151b-c1b7-4269-9078-2affebb4cebf
+  - BaseNodeGuid: 88e2a857-d6e5-4354-aab2-611722aad1bf
+    PortName: Choice 1
+    TargetNodeGuid: 4780ef91-b9f6-480d-96bd-d31c1ee9ff05
+  - BaseNodeGuid: 2e99151b-c1b7-4269-9078-2affebb4cebf
+    PortName: Choice 1
+    TargetNodeGuid: 7f7e2fc5-89d5-4147-8a3b-565d27ddeb7c
+  - BaseNodeGuid: 7f7e2fc5-89d5-4147-8a3b-565d27ddeb7c
+    PortName: Choice 1
+    TargetNodeGuid: 223efb85-7731-4270-835d-12db63fe554b
+  - BaseNodeGuid: 4780ef91-b9f6-480d-96bd-d31c1ee9ff05
+    PortName: Choice 1
+    TargetNodeGuid: c5ba74c9-67e8-4648-8b8b-3f7ede82b16a
+  - BaseNodeGuid: 223efb85-7731-4270-835d-12db63fe554b
+    PortName: Choice 1
+    TargetNodeGuid: c5ba74c9-67e8-4648-8b8b-3f7ede82b16a
+  - BaseNodeGuid: 223efb85-7731-4270-835d-12db63fe554b
+    PortName: Choice 2
+    TargetNodeGuid: 25473f46-9b4a-4b5c-bb63-5913d39e0aca
   DialogueNodeData:
-  - Guid: 2e99151b-c1b7-4269-9078-2affebb4cebf
-    DialogueText: 1.2
-    Actor: {fileID: 0}
-    FirstNode: 1
-    Position: {x: 880.8, y: 122.40001}
-  - Guid: 88e2a857-d6e5-4354-aab2-611722aad1bf
-    DialogueText: 1.1
-    Actor: {fileID: 0}
-    FirstNode: 0
-    Position: {x: 880.8, y: -126.399994}
   - Guid: d6d3fdfc-9020-4492-bfc3-cb99cea556fc
     DialogueText: 1
-    Actor: {fileID: 0}
-    FirstNode: 0
+    Actor: {fileID: 11400000, guid: 00207e9dc55fdad48b8da1448cdc2dc2, type: 2}
+    FirstNode: 1
     Position: {x: 456.80002, y: 74.399994}
+  - Guid: 88e2a857-d6e5-4354-aab2-611722aad1bf
+    DialogueText: 1.1
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
+    FirstNode: 0
+    Position: {x: 880.8, y: -126.399994}
+  - Guid: 2e99151b-c1b7-4269-9078-2affebb4cebf
+    DialogueText: 1.2
+    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
+    FirstNode: 0
+    Position: {x: 880.8, y: 122.40001}
+  - Guid: 4780ef91-b9f6-480d-96bd-d31c1ee9ff05
+    DialogueText: 1.11
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
+    FirstNode: 0
+    Position: {x: 1257.6, y: -126.399994}
+  - Guid: 7f7e2fc5-89d5-4147-8a3b-565d27ddeb7c
+    DialogueText: 1.21
+    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
+    FirstNode: 0
+    Position: {x: 1192.7999, y: 122.40001}
+  - Guid: 223efb85-7731-4270-835d-12db63fe554b
+    DialogueText: 1.22
+    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
+    FirstNode: 0
+    Position: {x: 1480.7999, y: 122.40001}
+  - Guid: c5ba74c9-67e8-4648-8b8b-3f7ede82b16a
+    DialogueText: 2.1
+    Actor: {fileID: 11400000, guid: 2de9f8431c8dec9409689f24e2d9f832, type: 2}
+    FirstNode: 0
+    Position: {x: 1820, y: -126.399994}
+  - Guid: 25473f46-9b4a-4b5c-bb63-5913d39e0aca
+    DialogueText: 2.2
+    Actor: {fileID: 11400000, guid: 2de9f8431c8dec9409689f24e2d9f832, type: 2}
+    FirstNode: 0
+    Position: {x: 1820, y: 122.40001}
