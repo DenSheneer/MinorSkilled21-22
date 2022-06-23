@@ -33,6 +33,7 @@ public class SceneDialogue : SceneEvent
             generateCache();
             loadDialogue(findStartNode());
         }
+
     }
 
     private void generateCache()
@@ -147,22 +148,15 @@ public class SceneDialogue : SceneEvent
     }
     private DialogueNodeData findStartNode()
     {
-        int nrOfHits = 0;
-        DialogueNodeData startNode = null;
-        foreach (var node in dialogueObject.DialogueNodeData)
+        foreach (var tmp in dialogueObject.NodeLinks)
         {
-            if (node.FirstNode)
+            if (tmp.PortName == "Next")
             {
-                startNode = node;
-                nrOfHits++;
+                return nodeCache[tmp.TargetNodeGuid];
             }
         }
-        if (nrOfHits == 0)
-            Debug.Log("No start node found!");
-        if (nrOfHits > 1)
-            Debug.Log("Multiple start nodes found! Program might not behave as intended");
 
-        return startNode;
+        return null;
     }
     /// <summary>
     /// This function finds and null-checks all required components for safe usage. <br></br>
