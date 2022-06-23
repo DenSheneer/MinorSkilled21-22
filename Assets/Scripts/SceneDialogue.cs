@@ -9,39 +9,29 @@ using System;
 public class SceneDialogue : SceneEvent
 {
     [SerializeField]
-    GameObject multipleChoicePanel;
-
-    [SerializeField]
-    TextMeshProUGUI text_a, text_b;
-
-    [SerializeField]
-    Button button_a, button_b;
-
-    [SerializeField]
-    TextMeshProUGUI actorNameObject, dialogueTextObject;
-
-    [SerializeField]
-    DialogueContainer dialogueObject;
-
+    private DialogueContainer dialogueObject;
     private Dictionary<string, DialogueNodeData> nodeCache;
+
+    private GameObject UI, choicePanel;
+    private TextMeshProUGUI buttonText_a, buttonText_b, actorNameContainer, dialogueTextContainer;
+    private Button button_a, button_b;
+
 
     bool waitingForInput = false;
     DialogueNodeData currentNode = null;
     DialogueNodeData nextNode = null;
 
+    private void Awake()
+    {
+        findAndVerifyComponents();
+        resetChoicePanel();
+    }
     public void Start()
     {
-        if (dialogueObject != null)
+        if (dialogueObject.DialogueNodeData.Count > 0)
         {
-            if (dialogueObject.DialogueNodeData.Count > 0)
-            {
-                generateCache();
-                loadDialogue(findStartNode());
-            }
-        }
-        else
-        {
-            Debug.Log("DialogueObject was null! Check the reference in the inspector.");
+            generateCache();
+            loadDialogue(findStartNode());
         }
     }
 
@@ -112,55 +102,47 @@ public class SceneDialogue : SceneEvent
         }
         return nextNodes;
     }
-    private void showChoices(List<DialogueNodeData> options)
+    virtual protected void showChoices(List<DialogueNodeData> options)
     {
-        if (multipleChoicePanel != null)
+        if (options.Count > 1)
         {
-            if (options.Count > 1)
+            choicePanel.SetActive(true);
+            if (options.Count > 2)
             {
-                multipleChoicePanel.SetActive(true);
-                if (options.Count > 2)
-                {
-                    Debug.Log("Warning! This dialogue graph had >2 options for this branch.\n " +
-                        "       This game was meant to have a max of 2. The remaining options will not be displayed.");
-                }
-
-                text_a.text = options[0].DialogueText;
-                text_b.text = options[1].DialogueText;
-
-                button_a.onClick.AddListener(() => loadDialogue(options[0]));
-                button_a.onClick.AddListener(() => resetMultipleChoicePanel());
-
-                button_b.onClick.AddListener(() => loadDialogue(options[1]));
-                button_b.onClick.AddListener(() => resetMultipleChoicePanel());
+                Debug.Log("Warning! This dialogue graph had >2 options for this branch.\n " +
+                    "       This demo was meant to have a max of 2. The remaining options will not be displayed.");
             }
-            else
-            {
-                Debug.Log("Warning! Trying to display 1 choice as a multiple choice branch");
-            }
+
+            buttonText_a.text = options[0].DialogueText;
+            buttonText_b.text = options[1].DialogueText;
+
+            button_a.onClick.AddListener(() => loadDialogue(options[0]));
+            button_a.onClick.AddListener(() => resetChoicePanel());
+
+            button_b.onClick.AddListener(() => loadDialogue(options[1]));
+            button_b.onClick.AddListener(() => resetChoicePanel());
         }
+        else
+            Debug.Log("Warning! Trying to display 1 choice as a multiple choice branch");
     }
-    void resetMultipleChoicePanel()
+    void resetChoicePanel()
     {
         waitingForInput = false;
-        multipleChoicePanel.SetActive(false);
+        choicePanel.SetActive(false);
         button_a.onClick.RemoveAllListeners();
         button_b.onClick.RemoveAllListeners();
     }
-    private void showNode(DialogueNodeData node)
+    virtual protected void showNode(DialogueNodeData node)
     {
         if (node != null)
         {
-            if (actorNameObject != null)
-            {
-                if (node.Actor != null)
-                    if (node.Actor == null || node.Actor.name == "_None")
-                        actorNameObject.text = string.Empty;
-                    else
-                        actorNameObject.text = node.Actor.name;
-            }
-            if (dialogueTextObject != null)
-                dialogueTextObject.text = node.DialogueText;
+            if (node.Actor != null)
+                if (node.Actor == null || node.Actor.name == "_None")
+                    actorNameContainer.text = string.Empty;
+                else
+                    actorNameContainer.text = node.Actor.name;
+
+            dialogueTextContainer.text = node.DialogueText;
         }
     }
     private DialogueNodeData findStartNode()
@@ -176,14 +158,50 @@ public class SceneDialogue : SceneEvent
             }
         }
         if (nrOfHits == 0)
-        {
             Debug.Log("No start node found!");
-        }
         if (nrOfHits > 1)
-        {
             Debug.Log("Multiple start nodes found! Program might not behave as intended");
-        }
 
         return startNode;
+    }
+    /// <summary>
+    /// This function finds and null-checks all required components for safe usage. <br></br>
+    /// Call in Awake().
+    /// </summary>
+    protected virtual void findAndVerifyComponents()
+    {
+        _ = dialogueObject ?? throw new ArgumentException("DialogueObject not found");
+
+        UI = GameObject.Find("UI");
+        _ = UI ?? throw new ArgumentNullException("UI object not found");
+
+        var dialogueTextObject = UI.gameObject.transform.Find("DialogueTextObject");
+        _ = dialogueTextObject ?? throw new ArgumentNullException("DialogueTextObject not found");
+
+        dialogueTextContainer = dialogueTextObject.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+        _ = dialogueTextContainer ?? throw new ArgumentNullException("DialogueTextContainer not found");
+
+        var actorNameObject = UI.gameObject.transform.Find("ActorName");
+        _ = actorNameObject ?? throw new ArgumentNullException("ActorNameObject not found");
+
+        actorNameContainer = actorNameObject.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+        _ = actorNameContainer ?? throw new ArgumentNullException("ActorNameContainer not found");
+
+        choicePanel = GameObject.Find("ChoicePanel");
+        _ = choicePanel ?? throw new ArgumentNullException("ChoicePanel not found");
+
+        var buttons = choicePanel.GetComponentsInChildren<Button>();
+
+        button_a = buttons[0];
+        _ = button_a ?? throw new ArgumentNullException("Button_a not found");
+
+        button_b = buttons[1];
+        _ = button_b ?? throw new ArgumentNullException("Button_b not found");
+
+        buttonText_a = button_a.GetComponentInChildren<TextMeshProUGUI>();
+        _ = buttonText_a ?? throw new ArgumentNullException("ButtonText_a not found");
+
+        buttonText_b = button_b.GetComponentInChildren<TextMeshProUGUI>();
+        _ = buttonText_b ?? throw new ArgumentNullException("ButtonText_b not found");
     }
 }

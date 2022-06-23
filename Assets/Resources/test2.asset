@@ -22,9 +22,11 @@ MonoBehaviour:
   DialogueNodeData:
   - Guid: efae851f-b4ae-4160-a735-554c3d0d62b6
     DialogueText: Dialogue Node
-    Actor: {fileID: 11400000, guid: 88b7127284ef81547963bc4fb45e3673, type: 2}
+    Actor: {fileID: 11400000, guid: 00207e9dc55fdad48b8da1448cdc2dc2, type: 2}
+    FirstNode: 0
     Position: {x: 589.60004, y: 60.8}
   - Guid: 0ac466bb-b89d-4af6-a9a9-e352276b94e2
     DialogueText: Dialogue Node
-    Actor: {fileID: 11400000, guid: 88b7127284ef81547963bc4fb45e3673, type: 2}
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
+    FirstNode: 1
     Position: {x: 270.40002, y: 104}
