@@ -79,19 +79,13 @@ public class GraphSaveUtility
 
     private void ClearGraph()
     {
-        NodeLinkData firstIndex = null;
-        foreach (var tmp in _containerCache.NodeLinks)
-        {
-            if (tmp.PortName == "Next")
-            {
-                firstIndex = tmp;
-            }
-        }
+        NodeLinkData firstIndex = _containerCache.NodeLinks.Find(x => x.PortName == "Next");
 
         if (firstIndex != null)
         {
-            Nodes.Find(X => X.EntryPoint).GUID = firstIndex.BaseNodeGuid;
+            Nodes.Find(x => x.EntryPoint).GUID = firstIndex.BaseNodeGuid;
         }
+        else { throw new Exception("No entry point was found in this graph!"); }
 
         foreach (var node in Nodes)
         {

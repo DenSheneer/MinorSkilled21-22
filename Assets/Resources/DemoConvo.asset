@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfaf39ce171f3ca43af68c12980e84c6, type: 3}
-  m_Name: convo1
+  m_Name: DemoConvo
   m_EditorClassIdentifier: 
   NodeLinks:
   - BaseNodeGuid: 398f0674-d67d-4f8c-b051-998c90aa96d4
