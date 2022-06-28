@@ -67,7 +67,7 @@ public class GraphSaveUtility
 
         if (_containerCache == null)
         {
-            EditorUtility.DisplayDialog("File not found.", "Target dialogie graph file does not exist", ok: "Okay");
+            EditorUtility.DisplayDialog("File not found.", "Target dialogue graph file does not exist", ok: "Okay");
             return;
         }
 
@@ -79,7 +79,13 @@ public class GraphSaveUtility
 
     private void ClearGraph()
     {
-        Nodes.Find(X => X.EntryPoint).GUID = _containerCache.NodeLinks[0].BaseNodeGuid;
+        NodeLinkData firstIndex = _containerCache.NodeLinks.Find(x => x.PortName == "Next");
+
+        if (firstIndex != null)
+        {
+            Nodes.Find(x => x.EntryPoint).GUID = firstIndex.BaseNodeGuid;
+        }
+        else { throw new Exception("No entry point was found in this graph!"); }
 
         foreach (var node in Nodes)
         {

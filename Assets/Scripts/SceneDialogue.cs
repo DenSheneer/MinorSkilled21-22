@@ -33,6 +33,7 @@ public class SceneDialogue : SceneEvent
             generateCache();
             loadDialogue(findStartNode());
         }
+
     }
 
     private void generateCache()
@@ -147,22 +148,15 @@ public class SceneDialogue : SceneEvent
     }
     private DialogueNodeData findStartNode()
     {
-        int nrOfHits = 0;
-        DialogueNodeData startNode = null;
-        foreach (var node in dialogueObject.DialogueNodeData)
+        foreach (var tmp in dialogueObject.NodeLinks)
         {
-            if (node.FirstNode)
+            if (tmp.PortName == "Next")
             {
-                startNode = node;
-                nrOfHits++;
+                return nodeCache[tmp.TargetNodeGuid];
             }
         }
-        if (nrOfHits == 0)
-            Debug.Log("No start node found!");
-        if (nrOfHits > 1)
-            Debug.Log("Multiple start nodes found! Program might not behave as intended");
 
-        return startNode;
+        return null;
     }
     /// <summary>
     /// This function finds and null-checks all required components for safe usage. <br></br>
@@ -191,12 +185,16 @@ public class SceneDialogue : SceneEvent
         _ = choicePanel ?? throw new ArgumentNullException("ChoicePanel not found");
 
         var buttons = choicePanel.GetComponentsInChildren<Button>();
+        if (buttons.Length > 1)
+        {
+            button_a = buttons[0];
+            _ = button_a ?? throw new ArgumentNullException("Button_a not found");
 
-        button_a = buttons[0];
-        _ = button_a ?? throw new ArgumentNullException("Button_a not found");
+            button_b = buttons[1];
+            _ = button_b ?? throw new ArgumentNullException("Button_b not found");
+        }
+        else { throw new ArgumentNullException("Did not find enough button objects"); }
 
-        button_b = buttons[1];
-        _ = button_b ?? throw new ArgumentNullException("Button_b not found");
 
         buttonText_a = button_a.GetComponentInChildren<TextMeshProUGUI>();
         _ = buttonText_a ?? throw new ArgumentNullException("ButtonText_a not found");

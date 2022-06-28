@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfaf39ce171f3ca43af68c12980e84c6, type: 3}
-  m_Name: convo1
+  m_Name: DemoConvo
   m_EditorClassIdentifier: 
   NodeLinks:
-  - BaseNodeGuid: 2ef5b7da-1f4a-42ef-ae29-d0a4a2ac34ff
-    PortName: Next
-    TargetNodeGuid: 398f0674-d67d-4f8c-b051-998c90aa96d4
   - BaseNodeGuid: 398f0674-d67d-4f8c-b051-998c90aa96d4
     PortName: Choice 2
     TargetNodeGuid: d7e1c9d1-6d69-4308-8951-9c58a267b8b7
@@ -25,15 +22,15 @@ MonoBehaviour:
   - BaseNodeGuid: d7e1c9d1-6d69-4308-8951-9c58a267b8b7
     PortName: Choice 2
     TargetNodeGuid: 09865475-5262-402d-9b99-e145b5ab5097
+  - BaseNodeGuid: 09865475-5262-402d-9b99-e145b5ab5097
+    PortName: Choice 1
+    TargetNodeGuid: 78b6c535-5f2d-4d4f-8cc6-8c7af88e53a8
   - BaseNodeGuid: bc7ca380-1b81-4e65-9b02-27a8aacffffd
     PortName: Choice 2
     TargetNodeGuid: 89fa2d84-50ca-45df-a4b1-66ef94912df1
   - BaseNodeGuid: 89fa2d84-50ca-45df-a4b1-66ef94912df1
     PortName: Choice 2
     TargetNodeGuid: 09865475-5262-402d-9b99-e145b5ab5097
-  - BaseNodeGuid: 09865475-5262-402d-9b99-e145b5ab5097
-    PortName: Choice 1
-    TargetNodeGuid: 78b6c535-5f2d-4d4f-8cc6-8c7af88e53a8
   - BaseNodeGuid: 78b6c535-5f2d-4d4f-8cc6-8c7af88e53a8
     PortName: Choice 1
     TargetNodeGuid: 02505299-6cf1-4bf2-8ba3-aae7d45420b4
@@ -46,55 +43,66 @@ MonoBehaviour:
   - BaseNodeGuid: b6a704de-5c1d-4a2d-bcfa-747642d4d756
     PortName: Choice 2
     TargetNodeGuid: 9dd575b9-f979-4c3c-8a83-915df2766b63
+  - BaseNodeGuid: 2ef5b7da-1f4a-42ef-ae29-d0a4a2ac34ff
+    PortName: Next
+    TargetNodeGuid: ce6aba78-d0fe-4c3b-852a-3563921bdfc2
+  - BaseNodeGuid: ce6aba78-d0fe-4c3b-852a-3563921bdfc2
+    PortName: Choice 1
+    TargetNodeGuid: 398f0674-d67d-4f8c-b051-998c90aa96d4
   DialogueNodeData:
-  - Guid: 398f0674-d67d-4f8c-b051-998c90aa96d4
-    DialogueText: Hey how are you?
-    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
-    FirstNode: 1
-    Position: {x: 304, y: 200}
-  - Guid: d7e1c9d1-6d69-4308-8951-9c58a267b8b7
-    DialogueText: Doing well!
-    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
-    FirstNode: 0
-    Position: {x: 589.60004, y: 121.600006}
-  - Guid: 09865475-5262-402d-9b99-e145b5ab5097
-    DialogueText: So, what have you been up to?
-    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
-    FirstNode: 0
-    Position: {x: 1207.2, y: 121.600006}
-  - Guid: bc7ca380-1b81-4e65-9b02-27a8aacffffd
-    DialogueText: Eh, I've been better
-    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
-    FirstNode: 0
-    Position: {x: 589.60004, y: 351.19998}
-  - Guid: 89fa2d84-50ca-45df-a4b1-66ef94912df1
-    DialogueText: Ow sorry to hear that.
-    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
-    FirstNode: 0
-    Position: {x: 927.2, y: 351.19998}
-  - Guid: 78b6c535-5f2d-4d4f-8cc6-8c7af88e53a8
-    DialogueText: (You feel the wind blowing through your hair)
-    Actor: {fileID: 11400000, guid: 00207e9dc55fdad48b8da1448cdc2dc2, type: 2}
-    FirstNode: 0
-    Position: {x: 1596.7999, y: 121.600006}
   - Guid: 02505299-6cf1-4bf2-8ba3-aae7d45420b4
     DialogueText: Not much, what about you?
     Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
     FirstNode: 0
-    Position: {x: 2078.4, y: 121.600006}
+    Position: {x: 2462.4, y: 91.2}
   - Guid: b6a704de-5c1d-4a2d-bcfa-747642d4d756
     DialogueText: Been busy with my exams. Shall we move inside? It's getting cold
       out here!
     Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
     FirstNode: 0
-    Position: {x: 2496, y: 121.600006}
+    Position: {x: 2880, y: 91.2}
   - Guid: 6b87d0e0-56a6-4036-8198-46459e43b53a
     DialogueText: Sure thing!
     Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
     FirstNode: 0
-    Position: {x: 3128.8, y: 121.600006}
+    Position: {x: 3512.8, y: 91.2}
   - Guid: 9dd575b9-f979-4c3c-8a83-915df2766b63
     DialogueText: I'd rather stay outside.
     Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
     FirstNode: 0
-    Position: {x: 3128.8, y: 372}
+    Position: {x: 3512.8, y: 341.59998}
+  - Guid: 398f0674-d67d-4f8c-b051-998c90aa96d4
+    DialogueText: Hey how are you?
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
+    FirstNode: 0
+    Position: {x: 694.4, y: 169.6}
+  - Guid: d7e1c9d1-6d69-4308-8951-9c58a267b8b7
+    DialogueText: Doing well!
+    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
+    FirstNode: 0
+    Position: {x: 980, y: 91.2}
+  - Guid: 09865475-5262-402d-9b99-e145b5ab5097
+    DialogueText: So, what have you been up to?
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
+    FirstNode: 0
+    Position: {x: 1597.6, y: 91.2}
+  - Guid: bc7ca380-1b81-4e65-9b02-27a8aacffffd
+    DialogueText: Eh, I've been better
+    Actor: {fileID: 11400000, guid: d8817427792404f438a238fb77e9f5de, type: 2}
+    FirstNode: 0
+    Position: {x: 980, y: 320.8}
+  - Guid: 89fa2d84-50ca-45df-a4b1-66ef94912df1
+    DialogueText: Ow sorry to hear that.
+    Actor: {fileID: 11400000, guid: 85beeb9924e65b949b8b6d3597d237cd, type: 2}
+    FirstNode: 0
+    Position: {x: 1317.6, y: 320.8}
+  - Guid: 78b6c535-5f2d-4d4f-8cc6-8c7af88e53a8
+    DialogueText: (You feel the wind blowing through your hair)
+    Actor: {fileID: 11400000, guid: 00207e9dc55fdad48b8da1448cdc2dc2, type: 2}
+    FirstNode: 0
+    Position: {x: 1987.2, y: 91.2}
+  - Guid: ce6aba78-d0fe-4c3b-852a-3563921bdfc2
+    DialogueText: '*Introduction*'
+    Actor: {fileID: 11400000, guid: 00207e9dc55fdad48b8da1448cdc2dc2, type: 2}
+    FirstNode: 0
+    Position: {x: 328, y: 169.6}
